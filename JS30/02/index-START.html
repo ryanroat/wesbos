@@ -10,7 +10,7 @@
     <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
+        <div class="hand minute-hand"></div>
         <div class="hand second-hand"></div>
       </div>
     </div>
@@ -70,6 +70,30 @@
 
   </style>
 
-  <script>  </script>
+  <script>
+    const secondHand = document.querySelector('.second-hand');
+    const minuteHand = document.querySelector('.minute-hand');
+    const hourHand = document.querySelector('.hour-hand');
+
+    function setDate() {
+        const now = new Date();
+
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        // multiply by 6 to get degrees and add 90º for 12 o'clock alignment
+        const secondsDegrees = seconds * 6 + 90;
+        const minutesDegrees = minutes * 6 + 90;
+        console.log(minutes, seconds);
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+        minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+        const hours = now.getHours();
+        // multiply by 30 to get degrees add 90º for 12 o'clock alignment
+        const hoursDegrees = hours * 30 + 90;
+        hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+    }
+
+    setInterval(setDate, 1000);
+  </script>
 </body>
 </html>
