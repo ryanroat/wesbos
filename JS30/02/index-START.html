@@ -83,7 +83,6 @@
         // multiply by 6 to get degrees and add 90º for 12 o'clock alignment
         const secondsDegrees = seconds * 6 + 90;
         const minutesDegrees = minutes * 6 + 90;
-        console.log(minutes, seconds);
         secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
         minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
 
