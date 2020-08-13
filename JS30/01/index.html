@@ -55,6 +55,25 @@
     <audio data-key="75" src="sounds/tom.wav"></audio>
     <audio data-key="76" src="sounds/tink.wav"></audio>
 
-    <script></script>
+    <script>
+      window.addEventListener('keydown', event => {
+          // look for an audio element matching keyCode
+          const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+          if (!audio) return; // quit the function if no audio for keyCode
+          // get the key class element matching keyCode
+          const key = document.querySelector(`.key[data-key="${event.keyCode}"]`);
+          audio.currentTime = 0; // rewind/restart sound if already playing
+          audio.play();
+          key.classList.add('playing'); // add playing class to element matching keyCode
+      });
+
+      function removeTransition(event) {
+          if (event.propertyName !== 'transform') return; // quit function unless event is tranform completing
+          this.classList.remove('playing');
+      }
+
+      const keys = document.querySelectorAll('.key');
+      keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    </script>
   </body>
 </html>
