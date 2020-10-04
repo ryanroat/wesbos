@@ -95,7 +95,32 @@
     </div>
   </div>
 
-<script>
-</script>
+  <script>
+    const boxes = document.querySelectorAll('.inbox [type="checkbox"]');
+
+    let lastChecked;
+
+    function handleCheck(e) {
+      // console.log(e.shiftKey);
+      // console.log(this.checked);
+      console.clear();
+      if (e.shiftKey && this.checked) {
+        let inRange = false;
+        boxes.forEach(box => {
+          console.log(box.checked);
+          if (box.checked && !inRange) {
+            inRange = true;
+          } else if (inRange && !box.checked) {
+            box.checked = true;
+          } else if (inRange && box.checked) {
+            inRange = false;
+          }
+        });
+      }
+      lastChecked = this;
+    }
+    // console.log(boxes);
+    boxes.forEach(box => box.addEventListener('click', handleCheck));
+  </script>
 </body>
 </html>
