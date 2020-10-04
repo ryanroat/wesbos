@@ -101,19 +101,15 @@
     let lastChecked;
 
     function handleCheck(e) {
-      // console.log(e.shiftKey);
-      // console.log(this.checked);
       console.clear();
       if (e.shiftKey && this.checked) {
         let inRange = false;
         boxes.forEach(box => {
-          console.log(box.checked);
-          if (box.checked && !inRange) {
-            inRange = true;
-          } else if (inRange && !box.checked) {
+          if (box === this || box === lastChecked) {
+            inRange = !inRange;
+          }
+          if (inRange) {
             box.checked = true;
-          } else if (inRange && box.checked) {
-            inRange = false;
           }
         });
       }
