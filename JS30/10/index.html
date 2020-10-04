@@ -113,9 +113,8 @@
           }
         });
       }
-      lastChecked = this;
+      if (this.checked) lastChecked = this;     // should fire only if this.checked = true?
     }
-    // console.log(boxes);
     boxes.forEach(box => box.addEventListener('click', handleCheck));
   </script>
 </body>
